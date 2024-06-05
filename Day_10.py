@@ -3,13 +3,13 @@
 
 # def format_name(f_name,l_name):
 
-#     formated_f_name=f_name.title()
-#     formated_l_name=l_name.title()
+#     formatted_f_name=f_name.title()
+#     formatted_l_name=l_name.title()
 
-#     return f"{formated_f_name} {formated_l_name}"
+#     return f"{formatted_f_name} {formatted_l_name}"
 
-# formated_string=format_name("victor","VICTOR")
-# print(formated_string)
+# formatted_string=format_name("victor","VICTOR")
+# print(formatted_string)
 
 # function with output
 
@@ -22,7 +22,7 @@ def format_name(f_name, l_name):
     return f"{formated_f_name} {formated_l_name}"
 
 
-print(format_name(input("What is your first name? "), input("What is your last name?"))
+print(format_name(input("What is your last name?"), input("What is your first name? "))
 
 def is_leap(year):
 
@@ -42,5 +42,5 @@ def days_in_month():
 
 year= int(input("Enter a year: "))
 month=int(input("Enter a month: "))
-days= days_in_month(year,month)
+days_in_month(year, month)
 print(days)
