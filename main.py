@@ -1,46 +1,33 @@
-#Day 10
-# function with output
-
-# def format_name(f_name,l_name):
-
-#     formated_f_name=f_name.title()
-#     formated_l_name=l_name.title()
-
-#     return f"{formated_f_name} {formated_l_name}"
-
-# formated_string=format_name("victor","VICTOR")
-# print(formated_string)
-
-# function with output
-
-def format_name(f_name, l_name):
-    if f_name == "" or l_name == "":
-        return "You didn't provide valid inputs"
-    formated_f_name = f_name.title()
-    formated_l_name = l_name.title()
-
-    return f"{formated_f_name} {formated_l_name}"
+import turtle
+import pandas
 
 
-print(format_name(input("What is your first name? "), input("What is your last name?"))
+screen = turtle.Screen()
+screen.title("U.S. States Game")
+image = "blank_states_img.gif"
+screen.addshape(image)
+turtle.shape(image)
 
-def is_leap(year):
+data = pandas.read_csv("50_states.csv")
+all_states = data.state.to_list()
+guessed_states = []
 
-    if year% 4 ==0:
-        if year% 100 ==0:
-            if year% 400 == 0:
-                print("Leap year")
-            else:print("Not a leap year")
+while len(guessed_states) < 50:
+    answer_state = screen.textinput(title=f"{len(guessed_states)}/50 States Correct",
+                                    prompt="What's another state's name?").title()
+    if answer_state == "Exit":
+        missing_states = [state for state in all_states if state not in guessed_states]
+        new_data = pandas.DataFrame(missing_states)
+        new_data.to_csv("states_to_learn.csv")
+        break
 
-        else:
-            print("Leap year")
-    else:
-        print("Not a leap year")
+    if answer_state in all_states:
+        guessed_states.append(answer_state)
+        t = turtle.Turtle()
+        t.hideturtle()
+        t.penup()
+        state_data = data[data.state == answer_state]
+        t.goto(int(state_data.x), int(state_data.y))
+        t.write(answer_state)
 
-def days_in_month():
-    month_days=[31, 28, 31,30, 31, 30,31,31,30,31,30,31]
 
-year= int(input("Enter a year: "))
-month=int(input("Enter a month: "))
-days= days_in_month(year,month)
-print(days)
